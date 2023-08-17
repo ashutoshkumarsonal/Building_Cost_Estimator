@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Estimation Result</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <style>
+        .container {
+            margin-top: 50px;
+        }
+
+        table {
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="mb-4">Estimation Result</h1>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Material</th>
+                    <th>Quantity</th>
+                    <th>Cost</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Bricks</td>
+                    <td>{{ bricks_quantity }}</td>
+                    <td>{{ bricks_cost }}</td>
+                </tr>
+                <tr>
+                    <td>Cement</td>
+                    <td>{{ cement_quantity }}</td>
+                    <td>{{ cement_cost }}</td>
+                </tr>
+                <tr>
+                    <td>Aggregate</td>
+                    <td>{{ aggregate_quantity }}</td>
+                    <td>{{ aggregate_cost }}</td>
+                </tr>
+                <tr>
+                    <td>Sand</td>
+                    <td>{{ sand_quantity }}</td>
+                    <td>{{ sand_cost }}</td>
+                </tr>
+                <tr>
+                    <td>TMT Bar</td>
+                    <td>{{ tmt_bar_quantity }}</td>
+                    <td>{{ tmt_bar_cost }}</td>
+                </tr>
+                <tr>
+                    <td>Concrete</td>
+                    <td>{{ concrete_quantity }}</td>
+                    <td>{{ concrete_cost }}</td>
+                </tr>
+                <tr>
+                    <td>Wood</td>
+                    <td>{{ wood_quantity }}</td>
+                    <td>{{ wood_cost }}</td>
+                </tr>
+                <tr>
+                    <td><strong>Total Cost:</strong></td>
+                    <td></td>
+                    <td><strong>{{ total_cost }}</strong></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</body>
+</html>

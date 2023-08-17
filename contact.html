@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Contact - Building Cost Estimator</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="custom.css">
+    <style media="screen">
+        body {
+            background-color: #8ac4f3;
+        }
+
+        hr {
+            background-color: #dff1f3;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg">
+        <a class="navbar-brand" href="#">Welcome to Building Cost Estimator</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+          aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="index.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="about.html">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="contact.html">Contact</a>
+            </li>
+          </ul>
+        </div>
+    </nav>
+    <div class="container">
+        <h1>Contact</h1>
+        <p>You can reach us through the following contact information:</p>
+        <ul>
+            <li>Email: info@buildingcostestimator.com</li>
+            <li>Phone: 123-456-7890</li>
+            <li>Address: 123 Main Street, City, Country</li>
+        </ul>
+
+        <form id="contact-form">
+            <div class="form-group">
+                <label for="name">Your Name:</label>
+                <input type="text" class="form-control" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Your Email:</label>
+                <input type="email" class="form-control" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="message">Your Message:</label>
+                <textarea class="form-control" id="message" name="message" rows="5" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Send Message</button>
+        </form>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <script>
+      $(document).ready(function() {
+          $('#contact-form').submit(function(event) {
+              event.preventDefault();
+              // Get the form data
+              var name = $('#name').val();
+              var email = $('#email').val();
+              var message = $('#message').val();
+              
+              // Perform any validation or data processing here
+              
+              // Clear the form fields
+              $('#name').val('');
+              $('#email').val('');
+              $('#message').val('');
+              
+              // Display a success message or perform other actions
+              alert('Message sent successfully!');
+          });
+      });
+    </script>
+</body>
+</html> 
+

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Building Cost Estimator</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="custom.css">
+    <style media="screen">
+        body {
+            background-color: #8ac4f3;
+        }
+
+        hr {
+            background-color: #dff1f3;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg">
+        <a class="navbar-brand" href="#">Welcome to Building Cost Estimator</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+          aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="index.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="about.html">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="contact.html">Contact</a>
+            </li>
+          </ul>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="text-center mt-4">
+            <h1 class="mb-4">Building Cost Estimator</h1>
+            <img src="https://media.giphy.com/media/W1fFapmqgqEf8RJ9TQ/giphy.gif" alt="Animated Building" class="img-fluid mt-4">
+
+            <form id="estimation-form">
+                <div class="form-group">
+                    <label for="house_area">House Area:</label>
+                    <input type="number" class="form-control" id="house_area" name="house_area" required>
+                </div>
+                <div class="form-group">
+                    <label for="num_floors">Number of Floors:</label>
+                    <input type="number" class="form-control" id="num_floors" name="num_floors" required>
+                </div>
+                <div class="form-group">
+                    <label for="num_rooms">Number of Rooms:</label>
+                    <input type="number" class="form-control" id="num_rooms" name="num_rooms" required>
+                </div>
+                <div class="form-group">
+                    <label for="num_kitchens">Number of Kitchens:</label>
+                    <input type="number" class="form-control" id="num_kitchens" name="num_kitchens" required>
+                </div>
+                <div class="form-group">
+                    <label for="num_bathroom">Number of Bathrooms:</label>
+                    <input type="number" class="form-control" id="num_bathroom" name="num_bathroom" required>
+                </div>
+                <div class="form-group">
+                    <label for="num_halls">Number of Halls:</label>
+                    <input type="number" class="form-control" id="num_halls" name="num_halls" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Estimate</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <script>
+      $(document).ready(function() {
+          $('#estimation-form').submit(function(event) {
+              event.preventDefault();
+              var houseArea = parseInt($('#house_area').val());
+              var numFloors = parseInt($('#num_floors').val());
+              var numRooms = parseInt($('#num_rooms').val());
+              var numKitchens = parseInt($('#num_kitchens').val());
+              var numBathroom = parseInt($('#num_bathroom').val());
+              var numHalls = parseInt($('#num_halls').val());
+              // Perform the estimation calculations here
+              var bricksQuantity = houseArea * 7.5 * numFloors;
+              var bricksCost = bricksQuantity * 6;
+
+              var cementQuantity = houseArea * 0.5 * numFloors;
+              var cementCost = cementQuantity * 350;
+
+              var aggregateQuantity = houseArea * 1.4 * numFloors;
+              var aggregateCost = aggregateQuantity * 70;
+
+              var sandQuantity = houseArea * 1 * numFloors;
+              var sandCost = sandQuantity * 50;
+
+              var tmtBarQuantity = houseArea * 2.5 * numFloors;
+              var tmtBarCost = tmtBarQuantity * 80;
+
+              var concreteQuantity = houseArea * 0.4 * numFloors;
+              var concreteCost = concreteQuantity * 100;
+
+              var woodQuantity =  (numRooms + numKitchens + numBathroom)  * 15 ;
+              var woodCost = woodQuantity * 120;
+
+              function calculateTotalCost(materialData) {
+                var totalCost = 0;
+                for (var i = 0; i < materialData.length; i++) {
+                  totalCost += materialData[i][2]; // Accumulate the cost of each material
+                }
+                return totalCost;
+              }
+
+              var materialData = [
+                  ['Bricks (Pieces, Rs.)', bricksQuantity, bricksCost],
+                  ['Cement (Bags, Rs.)', cementQuantity, cementCost],
+                  ['Aggregate (Cubic Feet, Rs.)', aggregateQuantity, aggregateCost],
+                  ['Sand (Bags, Rs.)', sandQuantity, sandCost],
+                  ['TMT Bar (Kg, Rs.)', tmtBarQuantity, tmtBarCost],
+                  ['Concrete (Cubic Feet, Rs.)', concreteQuantity, concreteCost],
+                  ['Wood (Cubic Feet, Rs.)', woodQuantity, woodCost]
+              ];
+
+              var totalCost = calculateTotalCost(materialData);
+              showResult(materialData, totalCost);
+
+          });
+
+          function showResult(materialData, totalCost) {
+            var resultHtml = '<div class="result-container mt-5"><h1 class="mb-4">Estimation Result</h1><table class="table"><thead><tr><th>Material</th><th>Quantity</th><th>Cost</th></tr></thead><tbody>';
+            for (var i = 0; i < materialData.length; i++) {
+                resultHtml += '<tr><td>' + materialData[i][0] + '</td><td>' + materialData[i][1] + '</td><td>' + materialData[i][2] + '</td></tr>';
+            }
+            resultHtml += '</tbody></table>';
+            resultHtml += '<h3 class="mt-4">Total Cost: ' + totalCost + '</h3></div>';
+            $('body').html(resultHtml);
+        }
+
+      });
+    </script>
+</body>
+</html>
